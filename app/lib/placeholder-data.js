@@ -180,9 +180,22 @@ const revenue = [
   { month: 'Dec', revenue: 4800 },
 ];
 
+const role = [
+  {
+    name: 'admin',
+  },
+  {
+    name: 'user',
+  },
+  {
+    name: 'guest',
+  }
+]
+
 module.exports = {
   users,
   customers,
   invoices,
   revenue,
+  role
 };

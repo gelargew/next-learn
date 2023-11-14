@@ -1,11 +1,12 @@
 import Pagination from '@/app/ui/invoices/pagination'
 import Search from '@/app/ui/search'
 import Table from '@/app/ui/invoices/table'
-import { CreateInvoice } from '@/app/ui/invoices/buttons'
+import { CreateInvoice, CreateRole } from '@/app/ui/invoices/buttons'
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons'
 import { Suspense } from 'react'
-import { fetchInvoicesPages } from '@/app/lib/data'
+import { fetchInvoicesPages, fetchRoles } from '@/app/lib/data'
 import { Metadata } from 'next'
+import { Nav } from './nav'
 
 export const metadata: Metadata = {
     title: 'Invoices',
@@ -22,6 +23,7 @@ export default async function Page({
     const query = searchParams?.query || ''
     const currentPage = Number(searchParams?.page) || 1
     const totalPages = await fetchInvoicesPages(query)
+    const roles = await fetchRoles()
 
     return (
         <div className='w-full'>
@@ -30,6 +32,8 @@ export default async function Page({
             </div>
             <div className='mt-4 flex items-center justify-between gap-2 md:mt-8'>
                 <Search placeholder='Search invoices...' />
+                <Nav roles={roles} />
+                <CreateRole />
                 <CreateInvoice />
             </div>
             <Suspense

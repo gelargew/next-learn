@@ -153,6 +153,17 @@ export async function fetchInvoicesPages(query: string) {
     }
 }
 
+export async function fetchRoles() {
+  try {
+    const roles = await sql`SELECT * FROM role`
+    return roles.rows
+  }
+  catch (error) {
+    console.error('Database Error:', error)
+    throw new Error('Failed to fetch roles.')
+  }
+}
+
 export async function fetchInvoiceById(id: string) {
     noStore()
     try {

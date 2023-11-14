@@ -11,3 +11,5 @@ export default function Layout({children}: {children: React.ReactNode}) {
   </div>
   )
 }
+
+export const revalidate = 60 * 60 * 24 * 60
